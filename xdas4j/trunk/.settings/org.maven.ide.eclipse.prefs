@@ -1,0 +1,11 @@
+#Sun Jun 14 13:15:44 CEST 2009
+activeProfiles=xdas4j
+eclipse.preferences.version=1
+filterResources=false
+fullBuildGoals=process-test-resources
+includeModules=true
+resolveWorkspaceProjects=true
+resourceFilterGoals=process-resources resources\:testResources
+skipCompilerPlugin=true
+useMavenFolders=false
+version=1
