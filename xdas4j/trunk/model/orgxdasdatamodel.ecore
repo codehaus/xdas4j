@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="orgxdasdatamodel"
+    nsURI="http:///orgxdasdatamodel.ecore" nsPrefix="orgxdasdatamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="Initiator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="account" ordered="false"
+        eType="#//Account" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" ordered="false"
+        eType="#//Service" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="host" ordered="false" eType="#//Host"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="effectiveAccount" ordered="false"
+        eType="#//Account" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_" ordered="false" eType="#//Trust"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Account">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="domain" ordered="false"
+        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="component" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_" ordered="false" eType="#//Account"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceTax" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Host">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="address" ordered="false"
+        eType="#//Address" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Address">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dnsName" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="msName" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="msDomain" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ipv4" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ipv6" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mac" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trust"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Target">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="account" ordered="false"
+        eType="#//Account" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trust" ordered="false"
+        eType="#//Trust" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" ordered="false"
+        eType="#//Service" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="host" ordered="false" eType="#//Host"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="_" ordered="false" eType="#//DataObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Observer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" ordered="false"
+        eType="#//Service" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="host" ordered="false" eType="#//Host"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actionTax" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outcomeTax" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="time" ordered="false" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="XDASEvent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initiator" ordered="false"
+        eType="#//Initiator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" ordered="false"
+        eType="#//Action" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="observer" ordered="false"
+        eType="#//Observer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="#//Target" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

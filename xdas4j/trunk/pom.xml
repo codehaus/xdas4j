@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- 
+ *************************************************************************
+ * Author   : J.Winteregg 
+ * Date     : June 14, 2009 
+ * 
+ * Project  : xdas4j 
+ * Package  : org.codehaus.xdas4j
+ * File     : pom.xml
+ * Desc     : Global Maven configuration file for xdas4j project.
+ * 
+ * Copyright (c) 2009 NetGuardians SA, all rights reserved.  
+ *************************************************************************
+-->
+
+	<modelVersion>4.0.0</modelVersion>
+  	<groupId>org.codehaus.xdas4j</groupId>
+  	<artifactId>xdas4j</artifactId>
+  	<name>Java implementation of XDAS</name>
+  	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+		
+	<organization>
+    	<name>xdas4j</name>
+    	<url>http://docs.codehaus.org/display/XDASJ/Home</url>
+  	</organization>
+  	
+	<!-- 
+		Modules declaration 
+	-->
+	<modules>
+		<module>domain</module>
+		<module>logger</module>
+	</modules>
+	
+
+	<!-- 
+		Maven deployment configuration for xdas4j packages
+		Browser URL: webdavs://username@dav.codehaus.org/snapshots.repository/xdas4j/org/codehaus/
+	-->
+	<distributionManagement>
+		<!-- Repository for releases -->
+		<repository>
+			<!-- denote whether artifacts deployed to this repository should get a uniquely generated 
+				 version number, or use the version number defined as part of the address. -->
+			<uniqueVersion>true</uniqueVersion>
+			<id>codehaus.org</id>
+			<name>Xdas4j Central Repository</name>
+			<url>dav:https://dav.codehaus.org/repository/xdas4j/</url>
+		</repository>
+		<!-- Repository for snapshots -->
+		<snapshotRepository>
+			<!-- denote whether artifacts deployed to this repository should get a uniquely generated 
+				 version number, or use the version number defined as part of the address. -->
+			<uniqueVersion>true</uniqueVersion>
+			<id>codehaus.org</id>
+			<name>Xdas4j Central Repository</name>
+			<url>dav:https://dav.codehaus.org/snapshots.repository/xdas4j/</url>
+		</snapshotRepository>
+		
+		<site>
+      		<id>codehaus.org</id>
+      		<url>dav:https://dav.codehaus.org/xdas4j/</url>
+    	</site>
+	</distributionManagement>
+	
+	<!-- 
+		Global build (lifesycle) configuration for xdas4j
+	-->
+	<build>
+	
+		<!-- Needed extension for Codehaus deployment (Webdav) -->
+		<extensions>
+      		<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-1</version>
+      		</extension>
+    	</extensions>
+		
+		<plugins>
+			<!-- For releasing the project -->
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<preparationGoals>clean</preparationGoals>
+				</configuration>
+			</plugin>
+			
+			<!-- Compiler configuration -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<debug>true</debug>
+				</configuration>
+			</plugin>
+			
+			<!-- Junit testing configuration -->
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-surefire-plugin</artifactId>
+        		<configuration>
+          			 <skip>false</skip>
+        		</configuration>
+      		</plugin> 	
+		</plugins> 
+	</build> 
+</project>
