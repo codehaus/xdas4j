@@ -19,6 +19,9 @@
 	<artifactId>logger</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<!-- Project Informations -->
+	<name>xdas4j logger</name>
+
 	<!-- 
 		Gives the reference on the global pom file
 	-->
@@ -61,7 +64,7 @@
 	-->
 	<dependencies>
 		<dependency>
-			<groupId>org.xdas</groupId>
+			<groupId>org.codehaus.xdas4j</groupId>
 		    <artifactId>domain</artifactId>
 		    <version>0.0.1-SNAPSHOT</version>
     	</dependency>

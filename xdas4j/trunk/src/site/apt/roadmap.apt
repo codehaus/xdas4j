@@ -1,0 +1,22 @@
+ ------
+ Xdas4j
+ ------
+ J.Winteregg
+ ------
+ 2009-06-20
+ ------
+
+xdas4j Road Map
+
+  As this early implementation is designed to provide a pragmatic way to test and challenge the on going XDAS effort, the event
+  data model involved behind the scene (XDAS data model) will constantly evolve during the following Milestones:
+
+   [[1]] On going: Proof of Concept implementation (XDAS compliant logger)
+   
+   [[2]] Summer 09: Text output formatting
+   
+   [[3]] Summer 09:Helper methods for quick XDAS event generation
+   
+   [[4]] Autumn 09: XML output formatting
+
+     

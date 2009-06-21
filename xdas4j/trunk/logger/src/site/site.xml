@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="xdas4j">
+  
+  <body>
+   
+   	<menu name="Menu">
+      <item name="Introduction" href="index.html"/>
+    </menu>
+    
+	<menu ref="modules" />
+    <menu ref="reports"/>
+    
+  </body>
+</project>

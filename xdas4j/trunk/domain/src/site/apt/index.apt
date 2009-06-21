@@ -1,0 +1,14 @@
+ ------
+ Xdas4j
+ ------
+ J.Winteregg
+ ------
+ 2009-06-20
+ ------
+
+Introduction
+
+ This component provide Java XDAS data model (used by xdas4j logger). Its Javadoc is 
+ available {{{apidocs/index.html}here}} (<Project Documentation>).
+
+  

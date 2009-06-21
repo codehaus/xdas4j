@@ -18,7 +18,10 @@
 	<!-- Artifact ID and version defined for the module -->
 	<artifactId>domain</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	
+	<!-- Project Informations -->
+	<name>xdas4j domain</name>
+  
 	<!-- 
 		Gives the reference on the global pom file
 	-->

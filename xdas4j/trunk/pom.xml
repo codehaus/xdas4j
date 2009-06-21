@@ -17,14 +17,63 @@
 	<modelVersion>4.0.0</modelVersion>
   	<groupId>org.codehaus.xdas4j</groupId>
   	<artifactId>xdas4j</artifactId>
-  	<name>Java implementation of XDAS</name>
   	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-		
+	
+	<!-- Project Informations -->
+	<name>xdas4j</name>
+	<!-- Needed in order to build xdas4j site: http://jira.codehaus.org/browse/MSITE-180 -->
+	<url>http://xdas4j.codehaus.org/</url>
+	
+	<licenses>
+  		<license>
+    		<name>Lesser General Public License</name>
+    		<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+  		</license>
+	</licenses>
+	
+	<mailingLists>
+    	<mailingList>
+      		<name>User List</name>
+      		<post>user@xdas4j.codehaus.org </post>
+      		<archive>http://archive.codehaus.org/lists/org.codehaus.xdas4j.user</archive>
+    	</mailingList>
+    	<mailingList>
+      		<name>Developer List</name>
+      		<post>dev@xdas4j.codehaus.org </post>
+      		<archive>http://archive.codehaus.org/lists/org.codehaus.xdas4j.dev</archive>
+    	</mailingList>
+    	<mailingList>
+      		<name>Announce List</name>
+      		<post>announce@xdas4j.codehaus.org </post>
+      		<archive>http://archive.codehaus.org/lists/org.codehaus.xdas4j.announce</archive>
+    	</mailingList>
+	</mailingLists>
+	
+	<issueManagement>
+    	<system>Jira</system>
+    	<url>http://jira.codehaus.org/browse/XDASJ</url>
+  	</issueManagement>
+	
 	<organization>
-    	<name>xdas4j</name>
-    	<url>http://docs.codehaus.org/display/XDASJ/Home</url>
+    	<name>NetGuardians</name>
+    	<url>http://www.netguardians.ch</url>
   	</organization>
+  	
+  	<developers>
+	    <developer>
+	    	<id>jwintere</id>
+	      	<name>Joel Winteregg</name>
+	      	<organization>NetGuardians</organization>
+	      	<organizationUrl>http://www.netguardians.ch</organizationUrl>
+	      	<roles>
+	        	<role>Project Lead</role>
+	        	<role>Developer</role>
+	      	</roles>
+	      	<timezone>+2</timezone>
+	    </developer>
+  </developers>
+  	
   	
 	<!-- 
 		Modules declaration 
@@ -105,7 +154,41 @@
         		<configuration>
           			 <skip>false</skip>
         		</configuration>
-      		</plugin> 	
+      		</plugin>
+      		
+      		<!-- For site generation purpose. Explicit version number needed in order to avoid:
+      		      http://jira.codehaus.org/browse/MSITE-262 -->
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-site-plugin</artifactId>
+        		<version>2.0-beta-7</version>
+      		</plugin>
 		</plugins> 
 	</build> 
+	
+	
+	<reporting>
+    	<plugins>
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-javadoc-plugin</artifactId>
+      		</plugin>
+      		
+      		<plugin>
+      			<!-- http://maven.apache.org/plugins/maven-project-info-reports-plugin/ -->
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-project-info-reports-plugin</artifactId>
+		        <reportSets>
+          			<reportSet>
+          				<reports>
+          					<report>mailing-list</report>
+          					<report>issue-tracking</report>
+			              	<report>license</report>
+            			</reports>
+          			</reportSet>
+        		</reportSets>
+      		</plugin>
+    	</plugins>
+	</reporting>
+	
 </project>
