@@ -74,6 +74,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_-Dr7sBbPEd6a9_DHh9AI0Q" name="address" type="_SRUvIBbPEd6a9_DHh9AI0Q" aggregation="composite" association="_xCDRYBbPEd6a9_DHh9AI0Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__FcI0GpvEd69drDcRzWyjA" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IRksABbQEd6a9_DHh9AI0Q"/>
       <defaultValue xmi:type="uml:LiteralString" xmi:id="_CdpwIBbREd6a9_DHh9AI0Q" value=""/>
     </ownedAttribute>
@@ -200,6 +201,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_o-jUYBckEd6Z3Nn7vtmt-g" name="XDASEvent">
     <ownedAttribute xmi:id="_6nBm8BckEd6Z3Nn7vtmt-g" name="initiator" type="_Ds7DYBTTEd6xso-smquFDQ" aggregation="composite" association="_wi_9QBckEd6Z3Nn7vtmt-g">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3LRHkGpvEd69drDcRzWyjA" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7nNRkBckEd6Z3Nn7vtmt-g"/>
       <defaultValue xmi:type="uml:LiteralString" xmi:id="_Oq0FYBclEd6Z3Nn7vtmt-g" value=""/>
     </ownedAttribute>
@@ -208,9 +210,11 @@
       <defaultValue xmi:type="uml:LiteralString" xmi:id="_hmz1UBclEd6Z3Nn7vtmt-g" value=""/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_zMwYUBclEd6Z3Nn7vtmt-g" name="observer" type="_W9EjMBboEd6KQ7Yj5-pS_Q" aggregation="composite" association="_veeIsBclEd6Z3Nn7vtmt-g">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1hOAkGpvEd69drDcRzWyjA" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2SA5EBclEd6Z3Nn7vtmt-g"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_F2vyQBcmEd6Z3Nn7vtmt-g" name="target" type="__WciEBblEd6KQ7Yj5-pS_Q" aggregation="composite" association="_DJfh0BcmEd6Z3Nn7vtmt-g">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uMAjAGpuEd69drDcRzWyjA" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L6Qz4BcmEd6Z3Nn7vtmt-g"/>
       <defaultValue xmi:type="uml:LiteralString" xmi:id="_K_emoBcmEd6Z3Nn7vtmt-g" value=""/>
     </ownedAttribute>
