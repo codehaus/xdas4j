@@ -27,15 +27,21 @@
 package org.codehaus.xdas4j.logger;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 
 import org.apache.log4j.AppenderSkeleton;
+import org.apache.log4j.helpers.LogLog;
 import org.apache.log4j.spi.LoggingEvent;
 import org.codehaus.xdas4j.datamodel.XDASEvent;
 
-
+/**
+ * XDAS JSON appender which allows to print XDAS message into JSON format (http://www.json.org/).
+ * A user friendly JSON file viewer is available as a Firefox plugin: https://addons.mozilla.org/en-US/firefox/addon/10869/
+ * 
+ * @author J.Winteregg
+ *
+ */
 public class XDASAppender extends AppenderSkeleton {
-    
-    private String separator = "-";
 
     /*
      * (non-Javadoc)
@@ -43,60 +49,91 @@ public class XDASAppender extends AppenderSkeleton {
      */
     protected void append(LoggingEvent event) {
         XDASEvent evt  = (XDASEvent) event.getMessage();
-        System.err.println(subAppend(evt));
+        /* For now, this JSON appender is just printing messages to the console */
+        System.out.println("{"+subAppend(evt)+"}");
     }
     
-
     /**
+     * String appender allowing to check if end string should be appended to 
+     * start string with a comma.
      * 
-     * @param o
+     * @param start The first part of the string
+     * @param end The string which should be appended to start
+     * @return The appended String
+     */
+    private String append(String start, String end){
+        /* Object separator is only set if we do not work on the first log content (to avoid to start with a separator) */
+        if(start == null)
+            return end;
+        else
+            return start+" ,"+end;
+    }
+    
+    /**
+     * Recursive analysis of xdas4j data model using reflexion. This method returns
+     * a JSON String representing the given xdas4j data model object.
+     * 
+     * @param o The xdas4j data model object
+     * 
+     * @return The JSON representation of the given object
      */
     private String subAppend(Object o){
         String log = null;
         Method eventMethods[] = o.getClass().getMethods();
+        /* Check all data model attributes (getters) */
         for(Method m : eventMethods){
             /* Avoid data extraction (for printing purpose) of getInstance and getClass methods */
             if(m.getName().startsWith("get") && ! m.getName().contains("Instance") && ! m.getName().contains("Class")){
-                Object data = null;
+                Object attributeData = null;
                 try {
-                    data = m.invoke(o);
+                    attributeData = m.invoke(o);
                 }
                 catch (Throwable e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                   LogLog.error("Unable to extract XDAS "+m.getName()+"attribute from "+o.getClass(), e);
                 }
-                if(data != null){
-                    if(! data.getClass().getName().startsWith("org.xdas.datamodel"))
-                        /* Object separator is only set if we do not work on the first log content (to avoid to start with a separator) */
-                        if(log == null)
-                            /* Remove 'get' from the methode name in order to avoid it into the output */
-                            log = (m.getName().substring(3)+" = "+data);
-                        else
-                            /* Remove 'get' from the methode name in order to avoid it into the output */
-                            log = log +" "+separator+" "+m.getName().substring(3)+" = "+data;
-                    else
-                        /* Object separator is only set if we do not work on the first log content (to avoid to start with a separator) */
-                        if(log == null)
-                            log = data.getClass().getSimpleName()+"("+subAppend(data)+")";
-                        else
-                            log = log +" "+separator+" "+data.getClass().getSimpleName()+"("+subAppend(data)+")";
+                if(attributeData != null){
+                    /* If we do not work on an xdas4j attribute object (which should be further analyzed), process this simple data structure */
+                    if(! attributeData.getClass().getName().startsWith("org.codehaus.xdas4j.datamodel")){
+                        /* Do we have a collection of something ? */
+                        if(attributeData instanceof Collection){
+                            Collection<?> attributeCollection = (Collection<?>) attributeData;
+                            /* Build collection String representation */
+                            String collectionString = null;
+                            for(Object collectionItem : attributeCollection){
+                                collectionString = append(collectionString, "{"+subAppend(collectionItem)+"}");
+                            }
+                            log = append(log, "\""+m.getName().substring(3)+"\": ["+collectionString+"]");
+                        }
+                        /* We work on an unstructured Java data (String, Integer, etc.) */
+                        else{
+                            log = append(log, "\""+m.getName().substring(3)+"\": \""+attributeData+"\"");
+                        }
+                    }
+                    /* We work on an xdas4j attribute. It should be further processed */
+                    else{
+                        log = append(log, "\""+attributeData.getClass().getSimpleName()+"\": {"+subAppend(attributeData)+"}");
+                    }
                 }
             }
         }
         return log;
     }
     
-    public void setSeparator(String separator){
-        this.separator = separator;
-    }
-
+    /*
+     * (non-Javadoc)
+     * @see org.apache.log4j.AppenderSkeleton#close()
+     */
     public void close() {
-        // TODO Auto-generated method stub
-        
+        if(this.closed) // closed is defined in AppenderSkeleton
+            return;
+        this.closed = true;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see org.apache.log4j.AppenderSkeleton#requiresLayout()
+     */
     public boolean requiresLayout() {
-        // TODO Auto-generated method stub
         return false;
     }
 
