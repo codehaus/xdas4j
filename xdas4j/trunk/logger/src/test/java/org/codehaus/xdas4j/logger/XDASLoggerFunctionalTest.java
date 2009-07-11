@@ -30,34 +30,29 @@ import java.util.Date;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.codehaus.xdas4j.datamodel.Account;
 import org.codehaus.xdas4j.datamodel.Action;
+import org.codehaus.xdas4j.datamodel.Host;
 import org.codehaus.xdas4j.datamodel.Initiator;
+import org.codehaus.xdas4j.datamodel.Target;
 import org.codehaus.xdas4j.datamodel.XDASEvent;
-import org.codehaus.xdas4j.logger.XDASLogger;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 
 /**
+ * Functional testing of xdas4j. This class provides usefull usage example of xdas4j API.
  * 
- * @author hatman
+ * @author J.Winteregg
  *
  */
 public class XDASLoggerFunctionalTest {
     
     
-    private final static XDASLogger LOGGER = new XDASLogger(XDASLoggerFunctionalTest.class);
+    private final static XDASLogger LOGGER = XDASLogger.getLogger(XDASLoggerFunctionalTest.class);
     
     @BeforeClass
     public static void setUp() throws Exception {
-        
+        /* Configure XDAS logger using XML file */
         DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("log4j.xml"));
-    }
-    
-
-    @AfterClass
-    public static void tearDown() throws Exception {
-
     }
     
     
@@ -65,12 +60,25 @@ public class XDASLoggerFunctionalTest {
     public void simpleLoggerTest(){
         LOGGER.info(
                     XDASEvent.getInstance()
-                    .setInitiator(Initiator.getInstance()
+                    .addInitiator(Initiator.getInstance()
                                   .setAccount(Account.getInstance()
                                               .setName("my name")
-                                              .setDomaine("domain")))
+                                              .setDomain("domain"))
+                                  .setHost(Host.getInstance()
+                                              .setName("hostname")))
+                     .addInitiator(Initiator.getInstance()
+                                  .setAccount(Account.getInstance()
+                                              .setName("my name2")
+                                              .setDomain("domai2n"))
+                                  .setHost(Host.getInstance()
+                                              .setName("hostname2")))
+                                              
                     .setAction(Action.getInstance()
                                   .setTime(new Date()))
+                                  
+                    .addTarget(Target.getInstance()
+                                  .setHost(Host.getInstance()
+                                               .setName("Target host name")))
                    );
     }
 
