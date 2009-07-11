@@ -28,6 +28,8 @@ package org.codehaus.xdas4j.datamodel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class XDASEvent {
@@ -41,9 +43,9 @@ public class XDASEvent {
     /**
      * XDAS data model
      */
-    private Initiator initiator = null;
+    private List<Initiator> initiators = null;
     private Action action = null;
-    private Target target = null;
+    private List<Target> targets = null;
     private Observer observer = null;
     
     
@@ -77,12 +79,16 @@ public class XDASEvent {
         return this;
     }
     
-    public Initiator getInitiator() {
-        return initiator;
+    public List<Initiator> getInitiators() {
+        return initiators;
     }
     
-    public XDASEvent setInitiator(Initiator initiator) {
-        this.initiator = initiator;
+    public XDASEvent addInitiator(Initiator initiator) {
+        /* On demand creation in order to return null (getInitiators) if no initiator are set.
+         * This avoid to return an empty List which is more complicated to check by the caller than a null value */
+        if(initiators == null)
+            initiators = new ArrayList<Initiator>();
+        initiators.add(initiator);
         return this;
     }
     
@@ -95,12 +101,16 @@ public class XDASEvent {
         return this;
     }
     
-    public Target getTarget() {
-        return target;
+    public List<Target> getTargets() {
+        return targets;
     }
     
-    public XDASEvent setTarget(Target target) {
-        this.target = target;
+    public XDASEvent addTarget(Target target) {
+        /* On demand creation in order to return null (getInitiators) if no initiator are set.
+         * This avoid to return an empty List which is more complicated to check by the caller than a null value */
+        if(targets == null)
+            targets = new ArrayList<Target>();
+        targets.add(target);
         return this;
     }
 

@@ -26,7 +26,22 @@
 
 package org.codehaus.xdas4j.datamodel;
 
-
-public class OutcomeTax {
+/**
+ * A classification of the outcome or result of the attempted activity, defined by the XDAS 
+ * standard, to the extent that the observer can determine it.
+ * 
+ * @author hatman
+ *
+ */
+public enum OutcomeTax {
+    
+    /*
+     * The Outcome Taxonomy is yet to be determined. Example are provided
+     * in order to allow xdas4j testing.
+     */
+    SUCCESS,
+    FAILED,
+    IN_PROGRESS,
+    OTHER;
 
 }

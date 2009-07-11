@@ -16,35 +16,28 @@
  *  along with Xdas4j.  If not, see <http://www.gnu.org/licenses/>.
  *  
  *  Author   : J.Winteregg 
- *  Date     : Feb 14, 2009 
+ *  Date     : Jul 11, 2009 
  * 
  *  Project  : xdas4j 
  *  Package  : org.codehaus.xdas4j.datamodel 
- *  File     : ActionTax.java
+ *  File     : ServiceTax.java
  *                    
  */
 
 package org.codehaus.xdas4j.datamodel;
 
 /**
- * The Action Taxonomy is yet to be determined. The current proposal involves a hierarchical
- * standard with four levels:
- * <ul>
- *  <li>Registry: the controlling organization which hosts the registry of standardized taxonomy
- *      elements, namely the Open Group
- *  <li>Provider: a namespace provider for a defined taxonomy; this is assigned by the Open
- *      Group, and the current provider is XDAS
- *  <li>Class: event classification, which is a group of similar events (example: User
- *      Management, Data Management, ...)
- *  <li>Identifier: the specific activity that took place (example: Create, Delete, Rename, ...)
- * </ul>
- *  This proposal as well as others is in the process of being evaluated.
+ * The Service Taxonomy is yet to be determined. The Current proposal envisions a simple tag
+ * which classifies the type of service.
  * 
  * @author J.Winteregg
  *
  */
-public enum ActionTax {
+public enum ServiceTax {
 
-    NO_DEFINED;
+    OS,
+    FW,
+    DB,
+    OTHER;
     
 }
