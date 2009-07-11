@@ -5,14 +5,16 @@
  ------
  2009-06-20
  ------
-
+ 
+ 
+  \ \ \ \ \ \ \ \ \ \  "<Syslog is for logging, XDAS is for auditing>" - John Calcote, Novell
+  
 Introduction
 
   New logging format and taxonomy standard related to the on going effort of The {{{http://www.opengroup.org}Open Group}} 
   (XDAS version 2). This early XDAS V2 implementation (built as a log4j plugin) provides a pragmatic way to define, test 
   and develop the new XDAS v2 logging standard.
-  
-  \ \ \ \ \ \ \ \ \ \  "<Syslog is for logging, XDAS is for auditing>" - John Calcote, Novell
+
 
 XDAS Objectives
 

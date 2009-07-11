@@ -72,6 +72,17 @@
 	      	</roles>
 	      	<timezone>+2</timezone>
 	    </developer>
+	    
+	    <developer>
+	    	<id>gsydler</id>
+	      	<name>Gregory Sydler</name>
+	      	<organization>NetGuardians</organization>
+	      	<organizationUrl>http://www.netguardians.ch</organizationUrl>
+	      	<roles>
+	        	<role>Xdas4j Tools Developer</role>
+	      	</roles>
+	      	<timezone>+2</timezone>
+	    </developer>
   </developers>
   	
   	
@@ -181,6 +192,7 @@
 		        <reportSets>
           			<reportSet>
           				<reports>
+          					<report>project-team</report>
           					<report>mailing-list</report>
           					<report>issue-tracking</report>
 			              	<report>license</report>

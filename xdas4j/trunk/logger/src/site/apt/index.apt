@@ -8,6 +8,23 @@
 
 Introduction
 
- This component should be included into your own application in order to use xdas4j.
+ This component is providing the Java logger needed to generate XDAS compliant audit trails. For that purpose, it uses the xdas4j
+ {{{../domain/index.html}domain model}} (which is the Java implementation of XDAS data model) and {{{http://logging.apache.org/log4j/}log4j}}
+ framework as a logging basis.
+ 
+Getting Started
+ 
+ This section provides a quick start for xdas4j integration in an existing {{{http://maven.apache.org/}Maven2}} compliant Java project.
 
-  
+* Usage
+ 
+ In order to get xdas4j logger, the following dependency should be added to your POM file.
+ 
++-------------------------------+
+  <dependency>
+     <groupId>org.codehaus.xdas4j</groupId>
+     <artifactId>logger</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+  </dependency>
++-------------------------------+
+ 
