@@ -17,6 +17,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pAqSABbIEd6a9_DHh9AI0Q"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_-y_1kBbLEd6a9_DHh9AI0Q" name="service" type="_Ol7NsBbKEd6a9_DHh9AI0Q" aggregation="composite" association="_-g7DkBbKEd6a9_DHh9AI0Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_O1s8EG4fEd60cI-AcPy8qQ" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Gm52wBbMEd6a9_DHh9AI0Q"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_L3OO8BbOEd6a9_DHh9AI0Q" name="host" type="_YizwwBbOEd6a9_DHh9AI0Q" aggregation="composite" association="_-rNgoBbNEd6a9_DHh9AI0Q">
@@ -121,6 +122,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uFDdUBbmEd6KQ7Yj5-pS_Q"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_RV24gBbnEd6KQ7Yj5-pS_Q" name="service" type="_Ol7NsBbKEd6a9_DHh9AI0Q" aggregation="composite" association="_FbCFQBbnEd6KQ7Yj5-pS_Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LWCXQG4fEd60cI-AcPy8qQ" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZUPrYBbnEd6KQ7Yj5-pS_Q"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="_kucd0BbnEd6KQ7Yj5-pS_Q" name="host" type="_YizwwBbOEd6a9_DHh9AI0Q" aggregation="composite" association="_ezPDoBbnEd6KQ7Yj5-pS_Q">
@@ -158,6 +160,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_W9EjMBboEd6KQ7Yj5-pS_Q" name="Observer">
     <ownedAttribute xmi:id="_hafkUBboEd6KQ7Yj5-pS_Q" name="service" type="_Ol7NsBbKEd6a9_DHh9AI0Q" aggregation="composite" association="_ZzvOUBboEd6KQ7Yj5-pS_Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RcyTEG4fEd60cI-AcPy8qQ" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_idIGABboEd6KQ7Yj5-pS_Q"/>
       <defaultValue xmi:type="uml:LiteralString" xmi:id="_nnlYsBboEd6KQ7Yj5-pS_Q" value=""/>
     </ownedAttribute>
