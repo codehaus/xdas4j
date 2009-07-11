@@ -33,12 +33,30 @@ import org.codehaus.xdas4j.datamodel.XDASEvent;
 
 public class XDASLogger {
     
-    /* FQDN = point d'entrée du logger (classe d'entrée) utilisée afin de calculer la classe appelante 
+    /* FQDN = point d'entrée du logger (classe d'entrée) utilisée afin de 'calculer' la classe appelante 
      * (effectué par LocationInfo). Ainsi dans la pile d'appel, dès que FQDN est trouvé, log4j sait qu'il ne
      * s'agit plus pas de l'appelant, mais d'une classe du framework ! */
     static String FQCN = XDASLogger.class.getName();
     
-    private Logger logger = null;
+    /**
+     * Wrapped class
+     */
+    private static Logger logger = null;
+    
+    /**
+     * Static access to XDASLogger.
+     * 
+     * @param name Class or logger name
+     * 
+     * @return The XDASLogger related to the given name
+     */
+    public static XDASLogger getLogger(String name){
+        return new XDASLogger(name);
+    }
+    
+    public static XDASLogger getLogger(Class clazz){
+        return new XDASLogger(clazz);
+    }
     
     public XDASLogger(String name){
         logger = Logger.getLogger(name);
