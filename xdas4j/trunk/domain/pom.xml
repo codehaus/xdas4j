@@ -65,5 +65,19 @@
 	<dependencies>
 		<!-- Nothing -->
     </dependencies>
+    
+    <reporting>
+    	<plugins>
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-javadoc-plugin</artifactId>
+        		<!-- Configuration override in order to show private attribute javadoc (XDAS attributes meaning) -->
+        		<configuration>
+        			<show>private</show>
+        		</configuration>
+      		</plugin>
+    	</plugins>
+	</reporting>
+	
 </project>
 
