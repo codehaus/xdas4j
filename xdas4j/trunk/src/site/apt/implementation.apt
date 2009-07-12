@@ -22,8 +22,7 @@ Xdas4j Implementation Notes
                                     allows <xdas4j> users to understand each different Class and their related attributes.
                                     
  
- As <org.codehaus.xdas4j:logger> module needs to know about XDAS data model in order to format and print XDAS events, it directly depends on 
- <org.codehaus.xdas4j:domain> module.
+ In order to handle XDAS audit events, <org.codehaus.xdas4j:logger> module directly depends on <org.codehaus.xdas4j:domain>.
   	
 * XDASJSONLayout
  
