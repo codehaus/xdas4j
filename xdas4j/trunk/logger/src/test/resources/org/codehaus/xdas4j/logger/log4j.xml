@@ -3,22 +3,23 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
 
-	<appender name="xdas" class="org.codehaus.xdas4j.logger.XDASAppender">
-		<!-- Params are set using reflexion: They are defined as setter into appender class -->
-		<!-- param name="separator" value="xx" -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.codehaus.xdas4j.logger.XDASJSONLayout"/>
 	</appender>
 
-
 	<!-- Buffer events and log them asynchronously -->
-	<appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
-		<appender-ref ref="xdas" />
+	<appender name="XDAS" class="org.codehaus.xdas4j.logger.XDASAppender">
+		<!-- Common XDAS fields can be defined here -->
+		<param name="observerHostName" value="Hostname defined into log4j config file" />
+		
+		<appender-ref ref="CONSOLE" />
 	</appender>
 
 	<!-- ======================= -->
 	<!-- Setup the Root category -->
 	<!-- ======================= -->
 	<root>
-		<appender-ref ref="ASYNC" />
+		<appender-ref ref="XDAS" />
 	</root>
 
 </log4j:configuration>

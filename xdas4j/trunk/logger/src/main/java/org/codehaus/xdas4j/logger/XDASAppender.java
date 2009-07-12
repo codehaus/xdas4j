@@ -26,98 +26,58 @@
 
 package org.codehaus.xdas4j.logger;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
+import java.util.Enumeration;
 
+import org.apache.log4j.Appender;
 import org.apache.log4j.AppenderSkeleton;
-import org.apache.log4j.helpers.LogLog;
+import org.apache.log4j.helpers.AppenderAttachableImpl;
+import org.apache.log4j.spi.AppenderAttachable;
 import org.apache.log4j.spi.LoggingEvent;
+import org.codehaus.xdas4j.datamodel.Host;
+import org.codehaus.xdas4j.datamodel.Observer;
 import org.codehaus.xdas4j.datamodel.XDASEvent;
 
 /**
- * XDAS JSON appender which allows to print XDAS message into JSON format (http://www.json.org/).
- * A user friendly JSON file viewer is available as a Firefox plugin: https://addons.mozilla.org/en-US/firefox/addon/10869/
+ * XDAS Appender which allows to statically (from log4j configuration file) set different
+ * XDAS values.
  * 
  * @author J.Winteregg
  *
  */
-public class XDASAppender extends AppenderSkeleton {
+public class XDASAppender extends AppenderSkeleton implements AppenderAttachable {
+    
+    private String observerHostName = null;
 
+    /**
+     * Nested appenders.
+     */
+    private final AppenderAttachableImpl appenders;
+    
+    /**
+     * 
+     */
+    public XDASAppender(){
+        appenders = new AppenderAttachableImpl();
+    }
+    
+    public void setObserverHostName(String hostname){
+        observerHostName = hostname;
+    }
+    
     /*
      * (non-Javadoc)
      * @see org.apache.log4j.AppenderSkeleton#append(org.apache.log4j.spi.LoggingEvent)
      */
     protected void append(LoggingEvent event) {
+        /*
+         * Add the needed parameters on the event.
+         * */
         XDASEvent evt  = (XDASEvent) event.getMessage();
-        /* For now, this JSON appender is just printing messages to the console */
-        System.out.println("{"+subAppend(evt)+"}");
+        evt.setObserver(Observer.getInstance().setHost(Host.getInstance().setName(observerHostName)));
+        
+        appenders.appendLoopOnAppenders(event);
     }
     
-    /**
-     * String appender allowing to check if end string should be appended to 
-     * start string with a comma.
-     * 
-     * @param start The first part of the string
-     * @param end The string which should be appended to start
-     * @return The appended String
-     */
-    private String append(String start, String end){
-        /* Object separator is only set if we do not work on the first log content (to avoid to start with a separator) */
-        if(start == null)
-            return end;
-        else
-            return start+" ,"+end;
-    }
-    
-    /**
-     * Recursive analysis of xdas4j data model using reflexion. This method returns
-     * a JSON String representing the given xdas4j data model object.
-     * 
-     * @param o The xdas4j data model object
-     * 
-     * @return The JSON representation of the given object
-     */
-    private String subAppend(Object o){
-        String log = null;
-        Method eventMethods[] = o.getClass().getMethods();
-        /* Check all data model attributes (getters) */
-        for(Method m : eventMethods){
-            /* Avoid data extraction (for printing purpose) of getInstance and getClass methods */
-            if(m.getName().startsWith("get") && ! m.getName().contains("Instance") && ! m.getName().contains("Class")){
-                Object attributeData = null;
-                try {
-                    attributeData = m.invoke(o);
-                }
-                catch (Throwable e) {
-                   LogLog.error("Unable to extract XDAS "+m.getName()+"attribute from "+o.getClass(), e);
-                }
-                if(attributeData != null){
-                    /* If we do not work on an xdas4j attribute object (which should be further analyzed), process this simple data structure */
-                    if(! attributeData.getClass().getName().startsWith("org.codehaus.xdas4j.datamodel")){
-                        /* Do we have a collection of something ? */
-                        if(attributeData instanceof Collection){
-                            Collection<?> attributeCollection = (Collection<?>) attributeData;
-                            /* Build collection String representation */
-                            String collectionString = null;
-                            for(Object collectionItem : attributeCollection){
-                                collectionString = append(collectionString, "{"+subAppend(collectionItem)+"}");
-                            }
-                            log = append(log, "\""+m.getName().substring(3)+"\": ["+collectionString+"]");
-                        }
-                        /* We work on an unstructured Java data (String, Integer, etc.) */
-                        else{
-                            log = append(log, "\""+m.getName().substring(3)+"\": \""+attributeData+"\"");
-                        }
-                    }
-                    /* We work on an xdas4j attribute. It should be further processed */
-                    else{
-                        log = append(log, "\""+attributeData.getClass().getSimpleName()+"\": {"+subAppend(attributeData)+"}");
-                    }
-                }
-            }
-        }
-        return log;
-    }
     
     /*
      * (non-Javadoc)
@@ -134,7 +94,37 @@ public class XDASAppender extends AppenderSkeleton {
      * @see org.apache.log4j.AppenderSkeleton#requiresLayout()
      */
     public boolean requiresLayout() {
-        return false;
+        /* An xdas4j layout is needed */
+        return true;
+    }
+
+    public void addAppender(Appender newAppender) {
+        appenders.addAppender(newAppender);
+    }
+
+    public Enumeration getAllAppenders() {
+        return appenders.getAllAppenders();
+    }
+
+    public Appender getAppender(String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public boolean isAttached(Appender appender) {
+        return appenders.isAttached(appender);
+    }
+
+    public void removeAllAppenders() {
+        appenders.removeAllAppenders();        
+    }
+
+    public void removeAppender(Appender appender) {
+        appenders.removeAppender(appender);
+    }
+
+    public void removeAppender(String name) {
+        appenders.removeAppender(name);
     }
 
 }
