@@ -1,0 +1,57 @@
+ ------
+ Xdas4j
+ ------
+ J.Winteregg
+ ------
+ 2009-07-12
+ ------
+ 
+Xdas4j Implementation Notes
+
+ In order to achieve the needed objectives, <xdas4j> is made of two main components (Maven modules, packaged as independant jar files):
+  
+  * <<xdas4j {{{logger/}logger}}>>: Which is made of two specific components related to the underlying logging framework (<log4j>):
+  
+  	* <<Log4j Layout>>: XDASJSONLayout for XDAS output formatting.
+  
+  	* <<Log4j Appender>>: XDASAppender for XDAS event configuration. The appender provides configuration setters in order to avoid defining
+  	                  usual XDAS parameters in every log statement. This provides a centralized way to set standard parameters such
+  	                  as XDAS <Observer>.
+  
+  * <<xdas4j {{{domain/}domain}}>>: XDAS data model related to the current status of {{{datamodel.html}XDAS proposal}}. A complete {{{domain/apidocs/}Javadoc}}
+                                    allows <xdas4j> users to understand each different Class and their related attributes.
+                                    
+ 
+ As <org.codehaus.xdas4j:logger> module needs to know about XDAS data model in order to format and print XDAS events, it directly depends on 
+ <org.codehaus.xdas4j:domain> module.
+  	
+* XDASJSONLayout
+ 
+ It is made as a <log4j> Layout which handle {{{domain/apidocs/org/codehaus/xdas4j/datamodel/XDASEvent.html}XDAS events}} in order to 
+ print them in a {{{http://json.org/}JSON}} compliant format. The developed Layout component is using a recursive and reflective approach
+ in order to automaticaly handle XDAS events.
+ 
+* XDASAppender
+ 
+ This log4j appender implements {{{http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/AppenderAttachable.html}AppenderAttachable}} interface
+ in order to allow its usage as a XDAS data model configurator. XDASAppender is an intermediate appender (it does not define any method to output XDAS trails)
+ which needs to be linked (using <appender-ref>) to another valid log4j Appender (Console, Syslog, RollingFile, etc.). It provides a way to configure specific 
+ parts of XDAS data model in order to avoid setting recurrent XDAS information in every generated events.
+ 
+ A configuration example is provided below:
+  
++------------------------------------------+
+ <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+     <!-- XDAS Layout allowing JSON formatting -->
+     <layout class="org.codehaus.xdas4j.logger.XDASJSONLayout"/>
+ </appender>
+
+ <appender name="XDAS" class="org.codehaus.xdas4j.logger.XDASAppender">
+     <!-- Common XDAS fields can be defined here in order to avoid setting them in every XDAS logging statement -->
+     <param name="observerHostName" value="Hostname defined into log4j config file" />
+     
+     <!-- Log4j Appender (which outputs XDAS events) -->
+     <appender-ref ref="CONSOLE" />
+ </appender>
++------------------------------------------+
+ 

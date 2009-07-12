@@ -11,12 +11,18 @@ xdas4j Road Map
   As this early implementation is designed to provide a pragmatic way to test and challenge the on going XDAS effort, the event
   data model involved behind the scene (XDAS data model) will constantly evolve during the following Milestones:
 
-   [[1]] On going: Proof of Concept implementation (XDAS compliant logger)
+   [[1]] Spring 09: Proof of Concept implementation (XDAS compliant logger), see {{{implementation.html}implementation details}} for more information.
    
-   [[2]] Summer 09: Text output formatting
+   [[2]] Summer 09: JSON output formatting (log4j Layout), see {{{implementation.html}implementation details}} for more information.
    
-   [[3]] Summer 09:Helper methods for quick XDAS event generation
+   [[3]] Summer 09: XDAS appender allowing the definition of specific XDAS attributes into log4j.xml file (log4j Appender), see 
+                    {{{implementation.html}implementation details}} for more information.
    
-   [[4]] Autumn 09: XML output formatting
+   [[4]] Autumn 09: Helper methods for quick XDAS event generation.
+   
+   [[5]] Autumn 09: NetBeans IDE plugin for graphical XDAS event generation.
+   
+   [[6]] Winter 09: XML output formatting.
+
 
      
