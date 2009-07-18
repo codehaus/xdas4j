@@ -1,0 +1,123 @@
+ ------
+ Xdas4j
+ ------
+ J.Winteregg
+ ------
+ 2009-06-20
+ ------
+
+Introduction
+
+ This component is providing the Java logger needed to generate XDAS compliant audit trails. For that purpose, it uses the xdas4j
+ {{{../domain/index.html}domain model}} (which is the Java implementation of XDAS data model) and {{{http://logging.apache.org/log4j/}log4j}}
+ framework as a logging basis.
+ 
+Getting Started
+ 
+ This section provides a quick start for xdas4j integration in an existing {{{http://maven.apache.org/}Maven2}} compliant Java project.
+
+* Importing xdas4j to your Java project
+ 
+ In order to get xdas4j logger, the following dependency should be added to your POM file.
+ 
++-------------------------------+
+  <dependency>
+     <groupId>org.codehaus.xdas4j</groupId>
+     <artifactId>logger</artifactId>
+     <version>0.1.0</version>
+  </dependency>
++-------------------------------+
+ 
+ Xdas4j is directly available through Codehaus repository located at: {{{http://repository.codehaus.org//}http://repository.codehaus.org/}}
+
+* Configuring xdas4j
+ 
+ Once xdas4j jars (<xdas4j-logger> and <xdas4j-domain>) are in the classpath, you should start configuring your XDAS audit logger
+ using a log4j compliant XML. The following configuration example (xdas4j.xml) introduce two xdas4j components:
+ 
+  [[1]] <org.codehaus.xdas4j.logger.XDASAppender>: Optional attachable appender allowing xdas4j users to define specific XDAS values to 
+        all their XDAS trails using a single declaration. In the example below, XDAS <observer.host.name> will automatically be set to 
+        "hostname from config file" into all generated XDAS trails.
+
+  [[2]] <org.codehaus.xdas4j.logger.XDASJSONLayout>: Needed Layout in order to handle XDAS events. This mandatory layout will allow
+        any log4j compliant appender to handle xdas4j events. Thus, Console appender, Syslog appender, RollingFile appender, etc. 
+        could be used with xdas4j.
+
+
+ 
++-------------------------------+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<!-- Appender used to output XDAS trails (using XDASJSONLayout) -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.codehaus.xdas4j.logger.XDASJSONLayout"/>
+	</appender>
+
+	<!-- XDAS appender allowing users to define their global XDAS attributes -->
+	<appender name="XDAS" class="org.codehaus.xdas4j.logger.XDASAppender">
+		<!-- Common XDAS fields can be defined here -->
+		<param name="observerHostName" value="hostname from config file" />
+		
+		<!-- Needed appender-ref in order to output XDAS trails using XDASJSONLayout -->
+		<appender-ref ref="CONSOLE" />
+	</appender>
+
+	<!-- ======================= -->
+	<!-- Setup the Root logger   -->
+	<!-- ======================= -->
+	<root>
+		<appender-ref ref="XDAS" />
+	</root>
+
+</log4j:configuration>
++-------------------------------+
+   
+* Configuring and getting xdas4j Logger
+
+ In order to get xdas4j logger into your Java application, the following configuration statement is needed:
+
++-------------------------------+
+  /* Configure XDAS logger using XML file */
+  DOMConfigurator.configure(MyClass.class.getResource("xdas4j.xml"));
++-------------------------------+
+ 
+  In the above example, xdas4j.xml file should be available into your application classpath (same package as MyClass).
+  
+  Once xdas4j.xml is defined and xdas4j logger configured, you can simply get your xdas4j logger as follow (static method):
+ 
++-------------------------------+
+   XDASLogger auditLogger = XDASLogger.getLogger(MyClass.class);
++-------------------------------+
+
+* Using xdas4j logger
+
+ The following code provides an XDAS audit trail generation example. For more information about available XDAS object and their
+ meaning, please see xdas4j domain {{{../domain/apidocs/}javadoc}} or its related {{{../datamodel.html}UML}}.
+ 
++-------------------------------+
+    auditLogger.log(
+                    XDASEvent.getInstance()
+                    .addInitiator(Initiator.getInstance()
+                                  .setAccount(Account.getInstance()
+                                              .setName("admin")
+                                              .setDomain("workgroup"))
+                                  .setHost(Host.getInstance()
+                                              .setName("pc101")))
+                     .addInitiator(Initiator.getInstance()
+                                  .setAccount(Account.getInstance()
+                                              .setName("admin")
+                                              .setDomain("workgroup"))
+                                  .setHost(Host.getInstance()
+                                              .setName("pc102")))
+                                              
+                    .setAction(Action.getInstance()
+                                  .setTime(new Date()))
+                                  
+                    .addTarget(Target.getInstance()
+                                  .setHost(Host.getInstance()
+                                               .setName("pc105")))
+                   );
++-------------------------------+
+ 

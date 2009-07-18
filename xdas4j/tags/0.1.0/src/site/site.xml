@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="xdas4j">
+  
+  <body>
+    <links>
+      <item name="OpenGroup" href="http://www.opengroup.org/" />
+      <item name="NetGuardians" href="http://www.netguardians.ch/" />
+    </links>
+    
+    <menu ref="parent" inherit="top" />
+
+	<menu name="XDAS">
+      <item name="Introduction" href="index.html"/>
+      <item name="History" href="history.html" />
+      <item name="Data Model" href="datamodel.html" />
+      <item name="Open Group XDAS effort" href="http://www.opengroup.org/security/current.htm#audit" />
+    </menu>
+
+    <menu name="xdas4j">
+      <item name="How To" href="logger/index.html" />
+      <item name="RoadMap" href="roadmap.html" />
+      <item name="Implementation Notes" href="implementation.html" />
+      <item name="Tools" href="tools.html" />
+      <item name="Wiki" href="http://docs.codehaus.org/display/XDASJ/Home" />
+    </menu>
+
+	<menu ref="modules" />
+    <menu ref="reports"/>
+    
+  </body>
+</project>

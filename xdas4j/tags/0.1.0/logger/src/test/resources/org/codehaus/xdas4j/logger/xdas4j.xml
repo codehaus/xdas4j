@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--                                                                                -->
+<!-- Copyright (c) 2009 NetGuardians SA                                             -->
+<!--                                                                                -->
+<!-- This file is part of xdas4j.                                                   -->
+<!-- Xdas4j is free software: you can redistribute it and/or modify                 -->
+<!-- it under the terms of the GNU Lesser General Public License as published by    -->
+<!-- the Free Software Foundation, either version 3 of the License, or              -->
+<!-- (at your option) any later version.                                            -->
+<!--                                                                                -->
+<!-- Xdas4j is distributed in the hope that it will be useful,                      -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of                 -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                  -->
+<!-- GNU Lesser General Public License for more details.                            -->
+<!--                                                                                -->
+<!-- You should have received a copy of the GNU Lesser General Public License       -->
+<!-- along with Xdas4j.  If not, see <http://www.gnu.org/licenses/>.                -->
+<!--                                                                                -->
+<!-- Author   : J.Winteregg                                                         -->
+<!-- Date     : Feb 13, 2009                                                        -->
+<!--                                                                                --> 
+<!-- Project  : xdas4j                                                              --> 
+<!-- Package  : org.codehaus.xdas4j.logger                                          -->
+<!-- File     : xdas4j.xml                                                          -->
+<!--                                                                                -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<!-- Appender used to output XDAS trails (using XDASJSONLayout) -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.codehaus.xdas4j.logger.XDASJSONLayout"/>
+	</appender>
+
+	<!-- XDAS appender allowing users to define their global XDAS attributes -->
+	<appender name="XDAS" class="org.codehaus.xdas4j.logger.XDASAppender">
+		<!-- Common XDAS fields can be defined here -->
+		<param name="observerHostName" value="Hostname defined into log4j config file" />
+		
+		<!-- Needed appender-ref in order to output XDAS trails using XDASJSONLayout -->
+		<appender-ref ref="CONSOLE" />
+	</appender>
+
+	<!-- ======================= -->
+	<!-- Setup the Root logger   -->
+	<!-- ======================= -->
+	<root>
+		<appender-ref ref="XDAS" />
+	</root>
+
+</log4j:configuration>
