@@ -1,0 +1,19 @@
+ ------
+ Xdas4j
+ ------
+ J.Winteregg
+ ------
+ 2009-07-18
+ ------
+ 
+Xdas4j Tools
+
+  In order to save developer time when defining XDAS compliant traces, a {{{http://www.netbeans.org/}NetBeans IDE}} plugin for XDAS 
+  will be soon available ({{{roadmap.html}autumn 09}}).
+  
+  As illustrated below, it will allow stressed developers to easily define XDAS compliant traces (no more excuses).
+
+ 
+[images/xdas4j-NetBeans-plugin_moc.png] NetBeans IDE Plugin
+
+ Designed using {{{http://www.balsamiq.com}Balsamiq mockups}}

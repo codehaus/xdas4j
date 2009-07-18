@@ -20,7 +20,7 @@ xdas4j Road Map
    
    [[4]] Autumn 09: Helper methods for quick XDAS event generation.
    
-   [[5]] Autumn 09: NetBeans IDE plugin for graphical XDAS event generation.
+   [[5]] Autumn 09: NetBeans IDE plugin for graphical XDAS event generation, see {{{tools.html}xdas4j tools}} for more information.
    
    [[6]] Winter 09: XML output formatting.
 
