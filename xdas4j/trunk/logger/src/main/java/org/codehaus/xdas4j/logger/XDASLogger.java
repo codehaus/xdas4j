@@ -30,7 +30,12 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.codehaus.xdas4j.datamodel.XDASEvent;
 
-
+/**
+ * XDASLogger allowing xdas4j user to generate XDAS compliant audit trails. 
+ * 
+ * @author hatman
+ *
+ */
 public class XDASLogger {
     
     /* FQDN = point d'entrée du logger (classe d'entrée) utilisée afin de 'calculer' la classe appelante 
@@ -44,7 +49,7 @@ public class XDASLogger {
     private static Logger logger = null;
     
     /**
-     * Static access to XDASLogger.
+     * Static access to XDASLogger using a String name.
      * 
      * @param name Class or logger name
      * 
@@ -54,6 +59,13 @@ public class XDASLogger {
         return new XDASLogger(name);
     }
     
+    /**
+     * Static access to XDASLogger using a class as logger reference name.
+     * 
+     * @param clazz The class used as logger reference
+     * 
+     * @return The XDASLogger related to the given class
+     */
     public static XDASLogger getLogger(Class clazz){
         return new XDASLogger(clazz);
     }
@@ -63,11 +75,10 @@ public class XDASLogger {
     }
     
     public XDASLogger(Class clazz){
-        this(clazz.getName());
+        logger = Logger.getLogger(clazz);
     }
     
-    
-    public void info(XDASEvent event){
+    public void log(XDASEvent event){
         logger.log(Level.INFO, event);
     }
 

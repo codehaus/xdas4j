@@ -47,18 +47,18 @@ import org.junit.Test;
 public class XDASLoggerFunctionalTest {
     
     
-    private final static XDASLogger LOGGER = XDASLogger.getLogger(XDASLoggerFunctionalTest.class);
+    private final static XDASLogger auditLogger = XDASLogger.getLogger(XDASLoggerFunctionalTest.class);
     
     @BeforeClass
     public static void setUp() throws Exception {
         /* Configure XDAS logger using XML file */
-        DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("log4j.xml"));
+        DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("xdas4j.xml"));
     }
     
     
     @Test
     public void simpleLoggerTest(){
-        LOGGER.info(
+        auditLogger.log(
                     XDASEvent.getInstance()
                     .addInitiator(Initiator.getInstance()
                                   .setAccount(Account.getInstance()
