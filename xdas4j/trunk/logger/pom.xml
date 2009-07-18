@@ -17,7 +17,7 @@
 	<groupId>org.codehaus.xdas4j</groupId>
 	<!-- Artifact ID and version defined for the module -->
 	<artifactId>logger</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 
 	<!-- Project Informations -->
 	<name>xdas4j logger</name>
@@ -28,7 +28,7 @@
 	<parent>
 		<groupId>org.codehaus.xdas4j</groupId>
   		<artifactId>xdas4j</artifactId>
-  		<version>0.1.0-SNAPSHOT</version>
+  		<version>0.1.0</version>
 	</parent>
 	
 	<!-- 
@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>org.codehaus.xdas4j</groupId>
 		    <artifactId>domain</artifactId>
-		    <version>0.1.0-SNAPSHOT</version>
+		    <version>0.1.0</version>
     	</dependency>
 	
 		<dependency>
