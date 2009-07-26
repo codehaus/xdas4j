@@ -18,12 +18,13 @@
 
     <menu name="xdas4j">
       <item name="How To" href="logger/index.html" />
+      <item name="Demo" href="demo/" />
       <item name="RoadMap" href="roadmap.html" />
       <item name="Implementation Notes" href="implementation.html" />
       <item name="Tools" href="tools.html" />
       <item name="Wiki" href="http://docs.codehaus.org/display/XDASJ/Home" />
     </menu>
-
+    
 	<menu ref="modules" />
     <menu ref="reports"/>
     

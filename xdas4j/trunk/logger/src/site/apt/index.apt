@@ -15,6 +15,7 @@ Introduction
 Getting Started
  
  This section provides a quick start for xdas4j integration in an existing {{{http://maven.apache.org/}Maven2}} compliant Java project.
+ This quick start guide is also available as a Flash {{{../demo/}demo}}.
 
 * Importing xdas4j to your Java project
  

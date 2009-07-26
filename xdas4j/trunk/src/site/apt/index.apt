@@ -15,6 +15,21 @@ Introduction
   (XDAS version 2). This early XDAS V2 implementation (built as a log4j plugin) provides a pragmatic way to define, test 
   and develop the new XDAS v2 logging standard.
 
+* XDAS @ Toronto (23 Jul 09)
+
+ The ongoing XDAS initiative has been presented during the {{{http://www.opengroup.org/toronto2009-spc/program.htm}3rd Security Practitioners Conference}} in Toronto (Canada).
+ The current XDAS draft and its available Java implementation (xdas4j) were presented during the conference:
+
+  * {{{slides/XDAS_toronto.pdf}XDAS slides}}: "<XDAS Audit & Logging standard for servicing today's regulatory/compliance requirements>".
+  
+  This presentation provides an overview of the current XDAS draft in order to understand its impact on compliance requirements 
+  (accountability).
+    
+  * {{{slides/xdas4j_toronto.pdf}Xdas4j slides}}: "<Understanding audit trails of heterogeneous applications without cost>".
+  
+  This presentation provides an overview of the current XDAS draft in order to show its impact on audit trails understanding
+  and management. A {{{demo/}demo}} of its Java implementation (xdas4j library) is also provided. 
+
 
 XDAS Objectives
 
