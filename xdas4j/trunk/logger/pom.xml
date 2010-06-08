@@ -17,7 +17,7 @@
 	<groupId>org.codehaus.xdas4j</groupId>
 	<!-- Artifact ID and version defined for the module -->
 	<artifactId>logger</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 
 	<!-- Project Informations -->
 	<name>xdas4j logger</name>
@@ -28,7 +28,7 @@
 	<parent>
 		<groupId>org.codehaus.xdas4j</groupId>
   		<artifactId>xdas4j</artifactId>
-  		<version>0.1.0</version>
+  		<version>0.1.1</version>
 	</parent>
 	
 	<!-- 
@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>org.codehaus.xdas4j</groupId>
 		    <artifactId>domain</artifactId>
-		    <version>0.1.0</version>
+		    <version>0.1.1</version>
     	</dependency>
 	
 		<dependency>
@@ -82,12 +82,13 @@
       		<scope>test</scope>
     	</dependency>
     	
-    	<!-- dependency>
-   			<groupId>org.json</groupId>
-    		<artifactId>json</artifactId>
-    		<version>20090211</version>
-      		<scope>test</scope>
-		</dependency --> 
+    	<dependency>
+    		<groupId>com.google.code.gson</groupId>
+    		<artifactId>gson</artifactId>
+    		<version>1.4</version>
+    		<scope>test</scope>
+		</dependency>
+ 
     </dependencies>
 </project>
 
