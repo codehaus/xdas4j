@@ -105,8 +105,8 @@ public class XDASJSONLayout extends Layout {
                    LogLog.error("Unable to extract XDAS "+m.getName()+"attribute from "+o.getClass(), e);
                 }
                 if(attributeData != null){
-                    /* If we do not work on an xdas4j attribute object (which should be further analyzed), process this simple data structure */
-                    if(! attributeData.getClass().getName().startsWith("org.codehaus.xdas4j.datamodel")){
+                    /* If we do not work on an xdas4j attribute object (which should be further analyzed), process this simple data structure (xdas4j enum included, related to issue XDASJ-5) */
+                    if(! attributeData.getClass().getName().startsWith("org.codehaus.xdas4j.datamodel") || attributeData instanceof Enum){
                         /* Do we have a collection of something ? */
                         if(attributeData instanceof Collection){
                             Collection<?> attributeCollection = (Collection<?>) attributeData;

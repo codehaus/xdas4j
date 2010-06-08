@@ -57,7 +57,7 @@ public class XDASLoggerFunctionalTest {
     
     
     @Test
-    public void simpleLoggerTest(){
+    public void loggerUsageExample(){
         auditLogger.log(
                     XDASEvent.getInstance()
                     .addInitiator(Initiator.getInstance()
