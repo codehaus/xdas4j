@@ -34,49 +34,28 @@ import org.codehaus.xdas4j.datamodel.Host;
 import org.codehaus.xdas4j.datamodel.Initiator;
 import org.codehaus.xdas4j.datamodel.Target;
 import org.codehaus.xdas4j.datamodel.XDASEvent;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
 /**
- * Functional testing of xdas4j.
+ * This class provides usefull usage example of xdas4j API.
  * 
- * @author Gregory Sydler (gsydler at gmail dot com)
+ * @author J.Winteregg
  *
  */
-public class XDASLoggerFunctionalTest {
+public class XDASLoggerAPIExample {
         
     private final static XDASLogger auditLogger = XDASLogger.getLogger(XDASLoggerFunctionalTest.class);
-    
-    @Test
-    public void testJSONLayout(){
-        DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("xdas4j-JSONLayout.xml"));
-        auditLogger.log(
-                    XDASEvent.getInstance()
-                    .addInitiator(Initiator.getInstance()
-                                  .setAccount(Account.getInstance()
-                                              .setName("my name")
-                                              .setDomain("domain"))
-                                  .setHost(Host.getInstance()
-                                              .setName("hostname")))
-                     .addInitiator(Initiator.getInstance()
-                                  .setAccount(Account.getInstance()
-                                              .setName("my name2")
-                                              .setDomain("domai2n"))
-                                  .setHost(Host.getInstance()
-                                              .setName("hostname2")))
-                                              
-                    .setAction(Action.getInstance()
-                                  .setTime(new Date()))
-                                  
-                    .addTarget(Target.getInstance()
-                                  .setHost(Host.getInstance()
-                                               .setName("Target host name")))
-                   );
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        /* Configure XDAS logger using XML file */
+        DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("xdas4j.xml"));
     }
 
     @Test
-    public void testKeyValueLayout(){
-        DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("xdas4j-KeyValueLayout.xml"));
+    public void loggerUsageExample(){
         auditLogger.log(
                     XDASEvent.getInstance()
                     .addInitiator(Initiator.getInstance()
@@ -100,4 +79,5 @@ public class XDASLoggerFunctionalTest {
                                                .setName("Target host name")))
                    );
     }
+
 }
