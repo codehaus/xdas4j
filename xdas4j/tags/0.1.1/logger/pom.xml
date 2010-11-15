@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- 
+ *************************************************************************
+ * Author   : J.Winteregg 
+ * Date     : June 14, 2009 
+ * 
+ * Project  : xdas4j 
+ * Package  : org.codehaus.xdas4j.logger
+ * File     : pom.xml
+ * Desc     : xdas4j logger Maven configuration.
+ * 
+ * Copyright (c) 2009 NetGuardians SA, all rights reserved.  
+ *************************************************************************
+-->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.codehaus.xdas4j</groupId>
+	<!-- Artifact ID and version defined for the module -->
+	<artifactId>logger</artifactId>
+	<version>0.1.1</version>
+
+	<!-- Project Informations -->
+	<name>xdas4j logger</name>
+
+	<!-- 
+		Gives the reference on the global pom file
+	-->
+	<parent>
+		<groupId>org.codehaus.xdas4j</groupId>
+  		<artifactId>xdas4j</artifactId>
+  		<version>0.1.1</version>
+	</parent>
+	
+	<!-- 
+		Build configuration for xdas4j logger.
+		The global configuration from parent pom is used. Only specific configuration statements are set here.
+	-->
+	<build>
+		<finalName>${project.parent.artifactId}-${artifactId}-${version}</finalName>
+		<plugins>
+			<plugin>
+				<!-- configuration for jar generation -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!-- Manifest configuration -->
+						<manifest>
+							<addClasspath>false</addClasspath>
+						</manifest>
+						<!-- Manifes entries configuration -->
+						<manifestEntries>
+							<Implementation-Version>${project.build.finalName}</Implementation-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+
+	<!-- 
+		Dependencies list configuration
+	-->
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.xdas4j</groupId>
+		    <artifactId>domain</artifactId>
+		    <version>0.1.1</version>
+    	</dependency>
+	
+		<dependency>
+			<groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.14</version>
+    	</dependency>
+    
+    	<dependency>
+      		<groupId>junit</groupId>
+      		<artifactId>junit</artifactId>
+      		<version>4.1</version>
+      		<scope>test</scope>
+    	</dependency>
+    	
+    	<dependency>
+    		<groupId>com.google.code.gson</groupId>
+    		<artifactId>gson</artifactId>
+    		<version>1.4</version>
+    		<scope>test</scope>
+		</dependency>
+ 
+    </dependencies>
+</project>
+

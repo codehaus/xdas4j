@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- 
+ *************************************************************************
+ * Author   : J.Winteregg 
+ * Date     : June 14, 2009 
+ * 
+ * Project  : xdas4j 
+ * Package  : org.codehaus.xdas4j
+ * File     : pom.xml
+ * Desc     : Global Maven configuration file for xdas4j project.
+ * 
+ * Copyright (c) 2009 NetGuardians SA, all rights reserved.  
+ *************************************************************************
+-->
+
+	<modelVersion>4.0.0</modelVersion>
+  	<groupId>org.codehaus.xdas4j</groupId>
+  	<artifactId>xdas4j</artifactId>
+  	<version>0.1.1</version>
+	<packaging>pom</packaging>
+	
+	<!-- Project Informations -->
+	<name>xdas4j</name>
+	<!-- Needed in order to build xdas4j site: http://jira.codehaus.org/browse/MSITE-180 -->
+	<url>http://xdas4j.codehaus.org/</url>
+	
+	<licenses>
+  		<license>
+    		<name>Lesser General Public License</name>
+    		<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+  		</license>
+	</licenses>
+	
+	<mailingLists>
+    	<mailingList>
+      		<name>User List</name>
+      		<post>user@xdas4j.codehaus.org </post>
+      		<archive>http://archive.codehaus.org/lists/org.codehaus.xdas4j.user</archive>
+    	</mailingList>
+    	<mailingList>
+      		<name>Developer List</name>
+      		<post>dev@xdas4j.codehaus.org </post>
+      		<archive>http://archive.codehaus.org/lists/org.codehaus.xdas4j.dev</archive>
+    	</mailingList>
+    	<mailingList>
+      		<name>Announce List</name>
+      		<post>announce@xdas4j.codehaus.org </post>
+      		<archive>http://archive.codehaus.org/lists/org.codehaus.xdas4j.announce</archive>
+    	</mailingList>
+	</mailingLists>
+	
+	<issueManagement>
+    	<system>Jira</system>
+    	<url>http://jira.codehaus.org/browse/XDASJ</url>
+  	</issueManagement>
+	
+	<organization>
+    	<name>NetGuardians</name>
+    	<url>http://www.netguardians.ch</url>
+  	</organization>
+  	
+  	<developers>
+	    <developer>
+	    	<id>jwintere</id>
+	      	<name>Joel Winteregg</name>
+	      	<organization>NetGuardians</organization>
+	      	<organizationUrl>http://www.netguardians.ch</organizationUrl>
+	      	<roles>
+	        	<role>Project Lead</role>
+	        	<role>Developer</role>
+	      	</roles>
+	      	<timezone>+2</timezone>
+	    </developer>
+	    
+	    <developer>
+	    	<id>gsydler</id>
+	      	<name>Gregory Sydler</name>
+	      	<organization>NetGuardians</organization>
+	      	<organizationUrl>http://www.netguardians.ch</organizationUrl>
+	      	<roles>
+	        	<role>Xdas4j Tools Developer</role>
+	      	</roles>
+	      	<timezone>+2</timezone>
+	    </developer>
+  </developers>
+  	
+  	
+	<!-- 
+		Modules declaration 
+	-->
+	<modules>
+		<module>domain</module>
+		<module>logger</module>
+	</modules>
+	
+
+	<!-- 
+		Maven deployment configuration for xdas4j packages
+		Browser URL: webdavs://username@dav.codehaus.org/snapshots.repository/xdas4j/org/codehaus/
+	-->
+	<distributionManagement>
+		<!-- Repository for releases -->
+		<repository>
+			<!-- denote whether artifacts deployed to this repository should get a uniquely generated 
+				 version number, or use the version number defined as part of the address. -->
+			<uniqueVersion>true</uniqueVersion>
+			<id>codehaus.org</id>
+			<name>Xdas4j Central Repository</name>
+			<url>dav:https://dav.codehaus.org/repository/xdas4j/</url>
+		</repository>
+		<!-- Repository for snapshots -->
+		<snapshotRepository>
+			<!-- denote whether artifacts deployed to this repository should get a uniquely generated 
+				 version number, or use the version number defined as part of the address. -->
+			<uniqueVersion>true</uniqueVersion>
+			<id>codehaus.org</id>
+			<name>Xdas4j Central Repository</name>
+			<url>dav:https://dav.codehaus.org/snapshots.repository/xdas4j/</url>
+		</snapshotRepository>
+		
+		<site>
+      		<id>codehaus.org</id>
+      		<url>dav:https://dav.codehaus.org/xdas4j/</url>
+    	</site>
+	</distributionManagement>
+	
+	<!-- 
+		Global build (lifesycle) configuration for xdas4j
+	-->
+	<build>
+	
+		<!-- Needed extension for Codehaus deployment (Webdav) -->
+		<extensions>
+      		<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-1</version>
+      		</extension>
+    	</extensions>
+		
+		<plugins>
+			<!-- For releasing the project -->
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<preparationGoals>clean</preparationGoals>
+				</configuration>
+			</plugin>
+			
+			<!-- Compiler configuration -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<debug>true</debug>
+				</configuration>
+			</plugin>
+			
+			<!-- Junit testing configuration -->
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-surefire-plugin</artifactId>
+        		<configuration>
+          			 <skip>false</skip>
+        		</configuration>
+      		</plugin>
+      		
+      		<!-- For site generation purpose. Explicit version number needed in order to avoid:
+      		      http://jira.codehaus.org/browse/MSITE-262 -->
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-site-plugin</artifactId>
+        		<version>2.0-beta-7</version>
+      		</plugin>
+		</plugins> 
+	</build> 
+	
+	
+	<reporting>
+    	<plugins>
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-javadoc-plugin</artifactId>
+      		</plugin>
+      		
+      		<plugin>
+      			<!-- http://maven.apache.org/plugins/maven-project-info-reports-plugin/ -->
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-project-info-reports-plugin</artifactId>
+		        <reportSets>
+          			<reportSet>
+          				<reports>
+          					<report>project-team</report>
+          					<report>mailing-list</report>
+          					<report>issue-tracking</report>
+			              	<report>license</report>
+            			</reports>
+          			</reportSet>
+        		</reportSets>
+      		</plugin>
+    	</plugins>
+	</reporting>
+	
+</project>
