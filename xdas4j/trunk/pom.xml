@@ -98,6 +98,7 @@
 	<!-- 
 		Maven deployment configuration for xdas4j packages
 		Browser URL: webdavs://username@dav.codehaus.org/snapshots.repository/xdas4j/org/codehaus/
+		Adding the needed certif for Maven deploy: https://docs.codehaus.org/display/HAUSMATES/Installing+a+new+CA+into+the+JDK
 	-->
 	<distributionManagement>
 		<!-- Repository for releases -->
