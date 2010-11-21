@@ -27,19 +27,13 @@
 package org.codehaus.xdas4j.logger;
 
 
-import static org.junit.Assert.*;
-
-import java.util.Date;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
-import org.codehaus.xdas4j.datamodel.Account;
 import org.codehaus.xdas4j.datamodel.Action;
 import org.codehaus.xdas4j.datamodel.ActionTax;
-import org.codehaus.xdas4j.datamodel.Host;
-import org.codehaus.xdas4j.datamodel.Initiator;
-import org.codehaus.xdas4j.datamodel.Target;
 import org.codehaus.xdas4j.datamodel.XDASEvent;
 import org.junit.Before;
 import org.junit.BeforeClass;

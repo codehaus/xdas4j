@@ -26,8 +26,7 @@ package org.codehaus.xdas4j.logger;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import org.apache.log4j.Layout;
 import org.apache.log4j.helpers.LogLog;
 import org.apache.log4j.spi.LoggingEvent;
