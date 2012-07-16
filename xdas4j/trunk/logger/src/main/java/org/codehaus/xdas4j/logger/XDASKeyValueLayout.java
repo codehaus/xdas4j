@@ -50,6 +50,7 @@ public class XDASKeyValueLayout extends Layout {
 
     private String pairsSeparator = DEFAULT_PAIRS_SEPARATOR;
     private String logHeader = null;
+    private String logFooter = null;
 
     public XDASKeyValueLayout() {
     }
@@ -85,6 +86,22 @@ public class XDASKeyValueLayout extends Layout {
     public String getLogHeader() {
         return logHeader;
     }
+    
+    /**
+     * Set the log footer
+     * @param logFooter to set
+     */
+    public void setLogFooter(String logFooter){
+    	this.logFooter = logFooter;
+    }
+    
+    /**
+     * Retrieve the log footer (or null if no log footer)
+     * @return The log footer
+     */
+    public String getLogFooter(){
+    	return logFooter;
+    }
 
     /**
      * Method used to format the logging event.
@@ -109,6 +126,11 @@ public class XDASKeyValueLayout extends Layout {
         // Remove the last separator
         if (sBuffer.length() > pairsSeparator.length()) {
             sBuffer.delete(sBuffer.length() - pairsSeparator.length(), sBuffer.length());
+        }
+        
+        // If a Log footer is set, append it
+        if(logFooter != null) {
+            sBuffer.append(logFooter);
         }
 
         return sBuffer.toString();
