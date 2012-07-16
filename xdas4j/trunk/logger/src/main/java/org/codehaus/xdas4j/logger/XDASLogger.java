@@ -46,29 +46,8 @@ public class XDASLogger {
     /**
      * Wrapped class
      */
-    private static Logger logger = null;
+    private Logger logger = null;
     
-    /**
-     * Static access to XDASLogger using a String name.
-     * 
-     * @param name Class or logger name
-     * 
-     * @return The XDASLogger related to the given name
-     */
-    public static XDASLogger getLogger(String name){
-        return new XDASLogger(name);
-    }
-    
-    /**
-     * Static access to XDASLogger using a class as logger reference name.
-     * 
-     * @param clazz The class used as logger reference
-     * 
-     * @return The XDASLogger related to the given class
-     */
-    public static XDASLogger getLogger(Class clazz){
-        return new XDASLogger(clazz);
-    }
     
     public XDASLogger(String name){
         logger = Logger.getLogger(name);
@@ -81,5 +60,5 @@ public class XDASLogger {
     public void log(XDASEvent event){
         logger.log(Level.INFO, event);
     }
-
+  
 }

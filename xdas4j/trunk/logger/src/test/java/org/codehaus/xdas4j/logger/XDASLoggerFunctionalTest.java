@@ -25,8 +25,13 @@
  */
 
 package org.codehaus.xdas4j.logger;
-import java.util.Date;
+import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.codehaus.xdas4j.datamodel.Account;
 import org.codehaus.xdas4j.datamodel.Action;
@@ -45,7 +50,7 @@ import org.junit.Test;
  */
 public class XDASLoggerFunctionalTest {
         
-    private final static XDASLogger auditLogger = XDASLogger.getLogger(XDASLoggerFunctionalTest.class);
+    private final static XDASLogger auditLogger = new XDASLogger(XDASLoggerFunctionalTest.class);
     
     @Test
     public void testJSONLayout(){
@@ -99,5 +104,36 @@ public class XDASLoggerFunctionalTest {
                                   .setHost(Host.getInstance()
                                                .setName("Target host name")))
                    );
+    }
+    
+    /**
+     * Test related to issue XDASJ-8
+     * http://jira.codehaus.org/browse/XDASJ-8
+     */
+    @Test
+    public void testMultiLogger() throws Exception {
+    	DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("xdas4j-two-loggers.xml"));
+    	
+    	/* First logger usage */
+    	final XDASLogger firstLogger = new XDASLogger("logger_1");
+    	firstLogger.log(XDASEvent.getInstance().addInitiator(Initiator.getInstance().setAccount(Account.getInstance().setName("TOTO"))));
+    	
+    	/* Second logger usage */
+    	final XDASLogger secondLogger = new XDASLogger("logger_2");
+    	secondLogger.log(XDASEvent.getInstance().addInitiator(Initiator.getInstance().setAccount(Account.getInstance().setName("TATA"))));
+    	
+    	/* First logger usage */
+    	firstLogger.log(XDASEvent.getInstance().addInitiator(Initiator.getInstance().setAccount(Account.getInstance().setName("HERE it is"))));
+    	
+    	/* Check if the three logger usage went into the right file */
+    	File firstFile = new File("test1.log");
+    	firstFile.deleteOnExit();
+    	File secondFile = new File("test2.log");
+    	secondFile.deleteOnExit();
+    	List lines = FileUtils.readLines(firstFile, "UTF-8");
+    	assertTrue("First logger should log 2 entry and not "+lines.size(), lines.size() == 2);
+    	
+    	lines = FileUtils.readLines(secondFile, "UTF-8");
+    	assertTrue("Second logger should only log 1 entry and not "+lines.size(), lines.size() == 1);
     }
 }

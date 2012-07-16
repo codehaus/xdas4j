@@ -39,19 +39,19 @@ import org.junit.Test;
 
 
 /**
- * This class provides usefull usage example of xdas4j API.
+ * This class provides useful usage example of xdas4j API.
  * 
  * @author J.Winteregg
  *
  */
 public class XDASLoggerAPIExample {
         
-    private final static XDASLogger auditLogger = XDASLogger.getLogger(XDASLoggerFunctionalTest.class);
+    private final static XDASLogger auditLogger = new XDASLogger(XDASLoggerAPIExample.class);
 
     @BeforeClass
     public static void setUp() throws Exception {
         /* Configure XDAS logger using XML file */
-        DOMConfigurator.configure(XDASLoggerFunctionalTest.class.getResource("xdas4j.xml"));
+    	DOMConfigurator.configure(XDASLoggerAPIExample.class.getResource("xdas4j-JSONLayout.xml"));
     }
 
     @Test

@@ -17,35 +17,38 @@
 <!-- You should have received a copy of the GNU Lesser General Public License       -->
 <!-- along with Xdas4j.  If not, see <http://www.gnu.org/licenses/>.                -->
 <!--                                                                                -->
-<!-- Author   : Gregory Sydler                                                      -->
-<!-- Date     : Oct 11, 2010                                                        -->
+<!-- Author   : Joel Winteregg                                                      -->
+<!-- Date     : July 09, 2012                                                       -->
 <!--                                                                                --> 
 <!-- Project  : xdas4j                                                              --> 
 <!-- Package  : org.codehaus.xdas4j.logger                                          -->
-<!-- File     : xdas4j-KeyValueLayout.xml                                           -->
+<!-- File     : xdas4j-two-loggers                                                  -->
 <!--                                                                                -->
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
 
-	<!-- Appender used to output XDAS trails (using XDASJSONLayout) -->
-	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
-		<layout class="org.codehaus.xdas4j.logger.XDASKeyValueLayout"/>
+	<appender name="FILE_1" class="org.apache.log4j.FileAppender">
+		<param name="File" value="test1.log" />
+		<param name="Append" value="false" />
+		<layout class="org.codehaus.xdas4j.logger.XDASKeyValueLayout">
+			<param name="logFooter" value="\n" />
+		</layout>
+	</appender>
+	
+	<appender name="FILE_2" class="org.apache.log4j.FileAppender">
+		<param name="File" value="test2.log" />
+		<param name="Append" value="false" />
+		<layout class="org.codehaus.xdas4j.logger.XDASKeyValueLayout">
+			<param name="logFooter" value="\n" />
+		</layout>
 	</appender>
 
-	<!-- XDAS appender allowing users to define their global XDAS attributes -->
-	<appender name="XDAS" class="org.codehaus.xdas4j.logger.XDASAppender">
-		<!-- Common XDAS fields can be defined here -->
-		<param name="observerHostName" value="Hostname defined into log4j config file" />
-		
-		<!-- Needed appender-ref in order to output XDAS trails using XDASJSONLayout -->
-		<appender-ref ref="CONSOLE" />
-	</appender>
+	<logger name="logger_1" additivity="false">
+		<appender-ref ref="FILE_1" />
+	</logger>
 
-	<!-- ======================= -->
-	<!-- Setup the Root logger   -->
-	<!-- ======================= -->
-	<root>
-		<appender-ref ref="XDAS" />
-	</root>
+	<logger name="logger_2" additivity="false">
+		<appender-ref ref="FILE_2" />
+	</logger>
 
 </log4j:configuration>

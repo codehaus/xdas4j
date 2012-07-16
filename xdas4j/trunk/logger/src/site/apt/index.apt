@@ -89,7 +89,7 @@ Getting Started
   Once xdas4j.xml is defined and xdas4j logger configured, you can simply get your xdas4j logger as follow (static method):
  
 +-------------------------------+
-   XDASLogger auditLogger = XDASLogger.getLogger(MyClass.class);
+   private static XDASLogger auditLogger = new XDASLogger(MyClass.class);
 +-------------------------------+
 
 * Using xdas4j logger
