@@ -60,5 +60,9 @@ public class XDASLogger {
     public void log(XDASEvent event){
         logger.log(Level.INFO, event);
     }
+    
+    public void log(Level level, XDASEvent event){
+        logger.log(level, event);
+    }
   
 }
