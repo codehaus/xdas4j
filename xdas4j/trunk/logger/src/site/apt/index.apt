@@ -86,7 +86,7 @@ Getting Started
  
   In the above example, xdas4j.xml file should be available into your application classpath (same package as MyClass).
   
-  Once xdas4j.xml is defined and xdas4j logger configured, you can simply get your xdas4j logger as follow (static method):
+  Once xdas4j.xml is defined and xdas4j logger configured, you can simply get your xdas4j logger as follow:
  
 +-------------------------------+
    private static XDASLogger auditLogger = new XDASLogger(MyClass.class);
